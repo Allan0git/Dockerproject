@@ -2,12 +2,15 @@ trigger:
 - main
 
 pool:
-  name: Default  # Specify the self-hosted agent pool name here
-steps:
-- script: echo Hello, world!
- displayName: 'Run a one-line script'
+  vmImage: 'ubuntu-latest'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
