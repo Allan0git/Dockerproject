@@ -1,11 +1,11 @@
 trigger:
-  - main  # The branch that will trigger the pipeline
+  - main  # Trigger pipeline on changes to 'main' branch
 
-# Use the self-hosted agent pool
 pool:
-  name: 'SelfHostedAgents'  # Replace with your self-hosted agent pool name
+  name: 'SelfHostedAgents'  # Use your self-hosted agent pool
+  demands:
+    - Agent.Version -gtVersion 2.163.1  # You can try modifying this demand, or removing it
 
 steps:
-  # Run a simple echo command
-  - script: echo "Hello, World!"
+  - script: echo "Hello, World!"  # A simple echo command to test the pipeline
     displayName: 'Echo Hello World'
