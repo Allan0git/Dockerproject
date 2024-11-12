@@ -12,7 +12,7 @@ resource "tls_private_key" "example" {
 
 # Create the key pair within Terraform (without needing an existing public key)
 resource "aws_key_pair" "example" {
-  key_name   = "my-key-pair"  # The key pair name
+  key_name   = "my-key-pair-2"  # The key pair name
   public_key = tls_private_key.example.public_key_openssh  # Use the generated key
 }
 
@@ -27,7 +27,7 @@ resource "aws_instance" "example" {
   monitoring = true  # Enable detailed monitoring for CloudWatch
 
   tags = {
-    Name = "example-instance"
+    Name = "example-instance-3"
   }
 
   # Log EC2 instance creation success
