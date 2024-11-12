@@ -1,8 +1,9 @@
 trigger:
   - main  # The branch that will trigger the pipeline
 
+# Specify the self-hosted agent pool
 pool:
-  vmImage: 'ubuntu-latest'
+  name: 'SelfHostedAgents'  # Replace with the name of your self-hosted agent pool
 
 steps:
   # Step 1: Set up Node.js environment (use Node.js version 14.x)
