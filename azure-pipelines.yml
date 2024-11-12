@@ -2,7 +2,7 @@ trigger:
   - main  # Trigger pipeline on changes to 'main' branch
 
 pool:
-  name: 'SelfHostedAgents'  # Use your self-hosted agent pool
+  name: 'Aldrin'  # Use your self-hosted agent pool
   demands:
     - Agent.Version -gtVersion 2.163.1  # You can try modifying this demand, or removing it
 
