@@ -5,14 +5,5 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - checkout: self   # Ensures your repository is checked out
-    fetchDepth: 1     # Shallow clone (only latest commit)
-
-  - task: UseDotNet@2
-    inputs:
-      packageType: 'sdk'
-      version: '6.0.300'
-      installationPath: $(Agent.ToolsDirectory)/dotnet
-
-  - script: echo Hello, world!
-    displayName: 'Run a one-line script'
+  - checkout: self
+    fetchDepth: 1
