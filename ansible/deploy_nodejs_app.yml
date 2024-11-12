@@ -1,0 +1,42 @@
+---
+- name: Deploy Node.js application using Docker
+  hosts: all
+  become: true
+  vars:
+    app_name: "nodejs-app"
+    docker_image_name: "nodejs-app-image"
+    app_code_path: "/home/ubuntu/app"
+    container_port: 8080
+
+  tasks:
+    - name: Ensure Docker is installed
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Copy application code
+      copy:
+        src: "../app"
+        dest: "{{ app_code_path }}"
+        mode: 0755
+        owner: ubuntu
+        group: ubuntu
+
+    - name: Build Docker image
+      docker_image:
+        path: "{{ app_code_path }}"
+        name: "{{ docker_image_name }}"
+        state: present
+
+    - name: Run Docker container
+      docker_container:
+        name: "{{ app_name }}"
+        image: "{{ docker_image_name }}"
+        state: started
+        exposed_ports:
+          - "{{ container_port }}"
+        published_ports:
+          - "{{ container_port }}:{{ container_port }}"
+        restart_policy: always
+        detach: true
