@@ -1,14 +1,11 @@
 trigger:
   - main
 
-pool:
-  vmImage: 'ubuntu-latest'
-
 jobs:
   - job: Build
     displayName: 'Build Job'
     pool:
-      vmImage: 'ubuntu-latest'
+      name: 'SelfHostedAgents'  # Use your custom pool name
 
     steps:
       - task: UseDotNet@2
