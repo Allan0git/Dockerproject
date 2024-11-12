@@ -1,7 +1,5 @@
 provider "aws" {
-  region     = "eu-west-1"  # Ireland region
-  access_key = "AKIA6G75DQ33PRQDQVOF"  # Your AWS access key
-  secret_key = "fhUikRsZTy20a1emy6EFfvOtXSAC5LogbLL7nhtu"  # Your AWS secret key
+  region = "eu-west-1"  # Ireland region
 }
 
 # Generate a new private key for the EC2 instance
