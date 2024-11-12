@@ -1,39 +1,11 @@
 trigger:
   - main  # The branch that will trigger the pipeline
 
-# Specify the self-hosted agent pool
+# Use the self-hosted agent pool
 pool:
-  name: 'SelfHostedAgents'  # Replace with the name of your self-hosted agent pool
+  name: 'SelfHostedAgents'  # Replace with your self-hosted agent pool name
 
 steps:
-  # Step 1: Set up Node.js environment (use Node.js version 14.x)
-  - task: UseNode@1
-    inputs:
-      versionSpec: '14.x'
-      checkLatest: true
-
-  # Step 2: Install project dependencies
-  - script: npm install
-    displayName: 'Install dependencies'
-
-  # Step 3: Run tests (optional but recommended)
-  - script: npm test
-    displayName: 'Run tests'
-    continueOnError: false  # Fail the pipeline if tests fail
-
-  # Step 4: Build the project
-  - script: npm run build
-    displayName: 'Build the project'
-  
-  # Step 5: Stage build artifacts (ensure your build output is in 'dist' or 'build' folder)
-  - script: |
-      mkdir $(Build.ArtifactStagingDirectory)/build
-      cp -r dist/* $(Build.ArtifactStagingDirectory)/build
-    displayName: 'Stage build artifacts'
-
-  # Step 6: Publish build artifacts to Azure DevOps
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)/build'  # Path to the staged build output
-      ArtifactName: 'drop'
-      publishLocation: 'Container'  # Store in Azure DevOps artifacts container
+  # Run a simple echo command
+  - script: echo "Hello, World!"
+    displayName: 'Echo Hello World'
