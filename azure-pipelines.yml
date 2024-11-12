@@ -1,18 +1,18 @@
 trigger:
   - main
 
-jobs:
-  - job: Build
-    displayName: 'Build Job'
-    pool:
-      name: 'SelfHostedAgents'  # Use your custom pool name
+pool:
+  vmImage: 'ubuntu-latest'
 
-    steps:
-      - task: UseDotNet@2
-        inputs:
-          packageType: 'sdk'
-          version: '6.0.300'
-          installationPath: $(Agent.ToolsDirectory)/dotnet
+steps:
+  - checkout: self   # Ensures your repository is checked out
+    fetchDepth: 1     # Shallow clone (only latest commit)
 
-      - script: echo Hello, world!
-        displayName: 'Run a one-line script'
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '6.0.300'
+      installationPath: $(Agent.ToolsDirectory)/dotnet
+
+  - script: echo Hello, world!
+    displayName: 'Run a one-line script'
