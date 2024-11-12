@@ -2,7 +2,7 @@ trigger:
   - main  # Trigger pipeline on changes to 'main' branch
 
 pool:
-  name: 'Aldrin'  # Use the 'Aldrin' self-hosted agent pool
+  vmImage: 'ubuntu-latest'  # Use a hosted agent pool temporarily
 
 steps:
   - script: echo "Hello, World!"  # A simple echo command to test the pipeline
